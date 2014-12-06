@@ -280,7 +280,7 @@ public static class SampleDraw
 
     private static ShaderProgram createSimpleTextureShader()
     {
-        string ResourceName = "PSMMassParticle.shaders.Texture.cgx";
+        string ResourceName = "PSMPatternShader.shaders.Texture.cgx";
             
         Assembly resourceAssembly = Assembly.GetExecutingAssembly();
         if (resourceAssembly.GetManifestResourceInfo(ResourceName) == null)
@@ -305,7 +305,7 @@ public static class SampleDraw
 
     private static ShaderProgram createSimpleColorShader()
     {
-        string ResourceName = "PSMMassParticle.shaders.Simple.cgx";
+        string ResourceName = "PSMPatternShader.shaders.Simple.cgx";
             
         Assembly resourceAssembly = Assembly.GetExecutingAssembly();
         if (resourceAssembly.GetManifestResourceInfo(ResourceName) == null)

@@ -23,7 +23,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
-    <Optimize>false</Optimize>
+    <Optimize>true</Optimize>
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -40,13 +40,21 @@
     <Compile Include="SampleTimer.cs" />
     <Compile Include="SampleDraw.cs" />
     <Compile Include="SampleSprite.cs" />
+    <Compile Include="SimpleFrameBuffer.cs" />
+    <Compile Include="SimpleSprite.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ShaderProgram Include="shaders\Simple.fcg" />
-    <ShaderProgram Include="shaders\Simple.vcg" />
+    <ShaderProgram Include="shaders\SimpleSprite.fcg" />
+    <ShaderProgram Include="shaders\SimpleSprite.vcg" />
   </ItemGroup>
   <ItemGroup>
     <PsmMetadata Include="app.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Sce\Sce.Psm.CSharp.targets" />
+  <ItemGroup>
+    <EmbeddedShaderProgram Include="shaders\Texture.fcg" />
+    <EmbeddedShaderProgram Include="shaders\Texture.vcg" />
+    <EmbeddedShaderProgram Include="shaders\Simple.fcg" />
+    <EmbeddedShaderProgram Include="shaders\Simple.vcg" />
+  </ItemGroup>
 </Project>
