@@ -1,0 +1,37 @@
+//# -*- coding: utf-8 -*-
+
+/* PlayStation(R)Mobile SDK 1.21.00
+ */
+
+uniform float Delta;	//time
+//uniform float2 tex;
+uniform float2 resolution = float2(960,544);
+
+// fmodとの置き換えでは、x負値の場合 符号が異なる
+float mod( float x, float y )
+{
+	return x - y*floor(x/y);
+}
+
+float circle(float2 pos)
+{
+	return mod(length(pos)-Delta*0.2f, 1.0f) - 0.5f;
+}
+
+void main( float2 in v_TexCoord : TEXCOORD0,
+           float4 in v_Color    : COLOR0,
+           float4 out Color     : COLOR )
+{
+	float aspect = resolution.x / resolution.y;
+	float2 pos = ( v_TexCoord ) * 2.0f - 1.0f;
+	pos.x *= aspect;
+
+	float4 c = float4(0.0);
+	float d = circle(pos);
+	if( d < 0.0 ){
+		c = float4( max((d + 0.1f)*10.0f, 0.0) );
+	}
+
+	Color = c;
+}
+

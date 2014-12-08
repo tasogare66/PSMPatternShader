@@ -46,6 +46,16 @@
   <ItemGroup>
     <ShaderProgram Include="shaders\SimpleSprite.fcg" />
     <ShaderProgram Include="shaders\SimpleSprite.vcg" />
+    <ShaderProgram Include="shaders\PatternCircle.fcg" />
+    <ShaderProgram Include="shaders\PatternCircle.vcg" />
+    <ShaderProgram Include="shaders\PatternHex.fcg" />
+    <ShaderProgram Include="shaders\PatternHex.vcg" />
+    <ShaderProgram Include="shaders\PatternCircle2.fcg" />
+    <ShaderProgram Include="shaders\PatternCircle2.vcg" />
+    <ShaderProgram Include="shaders\PatternHex2.fcg" />
+    <ShaderProgram Include="shaders\PatternHex2.vcg" />
+    <ShaderProgram Include="shaders\PatternRing.fcg" />
+    <ShaderProgram Include="shaders\PatternRing.vcg" />
   </ItemGroup>
   <ItemGroup>
     <PsmMetadata Include="app.xml" />

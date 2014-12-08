@@ -16,9 +16,9 @@ namespace Game.Framework
 		protected FrameBuffer m_frameBuffer;
 		protected Texture2D m_Texture;
 		protected SimpleSprite m_Spr;
-#if DEBUG
+//#if DEBUG
 		public SimpleSprite m_dbgSpr = null;
-#endif
+//#endif
 
 //		public FrameBuffer FrameBuf {
 //			get { return m_frameBuffer; }
@@ -44,33 +44,33 @@ namespace Game.Framework
 
 		public void InitDebug( bool vflip=true )
 		{
-#if DEBUG
+//#if DEBUG
 			//for debug
 			m_dbgSpr = new SimpleSprite( graphics, m_Texture );
 			if( vflip ){
 				m_dbgSpr.SetTextureVFlip();
 			}
-#endif
+//#endif
 		}
 
 		public void RenderDebug( Vector2 pos=default(Vector2) )
 		{
-#if DEBUG
+//#if DEBUG
 			if( m_dbgSpr != null ){
 				m_dbgSpr.Position.Xy = pos;
 				m_dbgSpr.Render();
 			}
-#endif
+//#endif
 		}
 
 		public virtual void Dispose()
 		{
-#if DEBUG
+//#if DEBUG
 			if( m_dbgSpr != null ){
 				m_dbgSpr.Dispose();
 				m_dbgSpr = null;
 			}
-#endif
+//#endif
 			if( m_Spr != null ){
 				m_Spr.Dispose();
 				m_Spr = null;
@@ -117,42 +117,16 @@ namespace Game.Framework
 	}
 
 
-	// menger sponge test、重い
-	class Menger : SimpleFrameBuffer
+	public class Pattern : SimpleFrameBuffer
 	{
 		ShaderProgram m_shader;
 		float m_timer = 0.0f;
 
-		public Menger( GraphicsContext gc, int width, int height )
+		public Pattern( GraphicsContext gc, int width, int height, string shader_name )
 			: base( gc, width, height )
 		{
-			var filename = "/Application/shaders/Menger.cgx" ;
+			var filename = "/Application/shaders/" + shader_name;
 			m_shader = new ShaderProgram( filename );
-			m_shader.SetUniformBinding( 1, "Delta" );
-
-			m_Spr.shaderProgram = m_shader;
-		}
-
-		public void UpdateTexture( float delta )
-		{
-			m_timer += delta;
-			m_shader.SetUniformValue( 1, m_timer );
-
-			this.RenderTexture();
-		}
-	}
-
-	class Raymarching : SimpleFrameBuffer
-	{
-		ShaderProgram m_shader;
-		float m_timer = 0.0f;
-
-		public Raymarching( GraphicsContext gc, int width, int height )
-			: base( gc, width, height )
-		{
-			var filename = "/Application/shaders/Kishimen.cgx" ;
-			m_shader = new ShaderProgram( filename );
-			//m_shader = ShaderManager.GetShader( "Kishimen" );
 			m_shader.SetUniformBinding( 1, "Delta" );
 
 			m_Spr.shaderProgram = m_shader;

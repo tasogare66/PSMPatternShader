@@ -1,0 +1,37 @@
+/* PlayStation(R)Mobile SDK 1.21.00
+ */
+
+uniform float Delta;
+//uniform float2 tex;
+uniform float2 resolution = float2(960,544);
+
+float mod( float x, float y )
+{
+	return x - y*floor(x/y);
+}
+
+float rings(float2 pos)
+{
+	return mod(length(pos)-Delta*0.01, 0.1) - 0.08;
+}
+
+void main( float2 in v_TexCoord : TEXCOORD0,
+           float4 in v_Color    : COLOR0,
+           float4 out Color     : COLOR )
+{
+	float aspect = resolution.x / resolution.y;
+	float2 pos = ( v_TexCoord ) * 2.0f - 1.0f;
+	pos.x *= aspect;
+
+	float4 c = float4(0.0);
+
+	float d = rings(pos);
+	if(d < 0.0) {
+		c = float4(1.0);
+	} else {
+		c = float4(0.0);
+	}
+
+	Color = c;
+}
+

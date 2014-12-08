@@ -1,0 +1,36 @@
+/* PlayStation(R)Mobile SDK 1.21.00
+ */
+
+uniform float Delta;
+//uniform float2 tex;
+uniform float2 resolution = float2(960,544);
+
+float circle(float2 pos, float radius)
+{
+	return length(pos) - radius;
+}
+
+void main( float2 in v_TexCoord : TEXCOORD0,
+           float4 in v_Color    : COLOR0,
+           float4 out Color     : COLOR )
+{
+	float aspect = resolution.x / resolution.y;
+	float2 pos = ( v_TexCoord ) * 2.0f - 1.0f;
+	pos.x *= aspect;
+
+#if 0
+	float d = circle(pos, 0.5);
+	float color = d < 0.0 ? 1.0 : 0.0;
+
+	Color = float4( color, color, color, 1.0 );
+#else
+	float4 c = float4(0.0);
+	float d = circle(pos, 0.5);
+	if( d < 0.0 ){
+		c = float4( max((d + 0.1f)*10.0f, 0.0) );
+	}
+
+	Color = c;
+#endif
+}
+
